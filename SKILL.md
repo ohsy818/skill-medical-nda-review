@@ -9,6 +9,12 @@ extends: skill-nda-review
 >
 > ⚠️ **Important**: Do not remove the `extends` field from the frontmatter. Removing it breaks inheritance.
 
+## 문서 접근 게이트(필수)
+- 본 스킬을 실행하기 전에 반드시 ‘skill-document-readiness-and-retry’를 수행하여 PASS 상태여야 합니다.
+- PASS 전에는 어떠한 분석/결과서도 생성하지 않습니다. 원문 미확보/불완전 시 일반론적 결과서 출력은 금지되며, ‘차단 응답 템플릿(권한/경로/대체 형식 요청)’만 허용됩니다.
+- 입력 기대값: readiness handoff 패키지(JSON) 포함
+  - 필수: source_path/share_link, version/hash, full text, 조항 인덱스, 메타(문서명/작성일/당사자), readiness_flags(모두 true).
+
 ## 의료 전용 추가/강화 규칙 (상속 규칙 위에 우선 적용)
 
 의료 영역 고유의 규제·데이터 특성을 반영해 다음 항목을 추가로 점검합니다. 각 항목은 위험도(HIGH/MEDIUM/LOW)를 평가하고, 근거(원문 인용/사실관계)와 구체적 수정 권고안을 제시하세요.
