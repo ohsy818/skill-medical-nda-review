@@ -9,6 +9,12 @@ extends: skill-nda-review
 >
 > ⚠️ **Important**: Do not remove the `extends` field from the frontmatter. Removing it breaks inheritance.
 
+## 선행 조건 — 문서 프리플라이트·재시도·게이트키핑(필수)
+- 본 스킬을 실행하기 전에 반드시 `skill-document-readiness-and-retry`를 호출하여 원문 접근 준비를 완료하세요.
+- 성공 요건: canonical_path, size, page_count(가능 시), sha256, original_read=true.
+- original_read≠true이면 의료 전용 검토를 수행하지 말고 부모 스킬의 “원문 접근 실패(산출물 차단)” 템플릿으로 종료하세요.
+- 민감문서 취급: 의료/PHI 문서는 임시 링크 TTL과 접근 로그가 활성화되어야 합니다(필수).
+
 ## 의료 전용 추가/강화 규칙 (상속 규칙 위에 우선 적용)
 
 의료 영역 고유의 규제·데이터 특성을 반영해 다음 항목을 추가로 점검합니다. 각 항목은 위험도(HIGH/MEDIUM/LOW)를 평가하고, 근거(원문 인용/사실관계)와 구체적 수정 권고안을 제시하세요.
@@ -69,8 +75,8 @@ extends: skill-nda-review
 - [Rule 4: 관련자 제공 조건]에는 IRB, 위탁처리자, 하도급자, 연구자 커뮤니티(사이트/SMO/CRO)에 대한 동등 의무 부과와 감독책임을 명시합니다.
 - [Rule 5: 책임상한]은 일반 상한을 유지하되, PHI 침해·기밀 위반 등에 대한 상한 예외/상향 협상을 기본 권고로 추가합니다.
 
-## 출력 템플릿 — 의료 전용 추가 섹션 포함
-아래 템플릿을 부모 스킬의 결과 템플릿에 ‘그대로’ 덧붙여 사용하세요(의료 전용 섹션은 필수).
+## 출력 템플릿 — 의료 전용 추가 섹션 포함(소스 정보 포함)
+부모 스킬의 결과 템플릿 상단에 소스 정보를 표기한 뒤, 아래 ‘의료 전용 점검’ 섹션을 그대로 덧붙이세요(필수).
 
 ```markdown
 ### 의료 전용 점검(필수)
